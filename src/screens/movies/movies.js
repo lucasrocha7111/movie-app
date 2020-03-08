@@ -12,7 +12,7 @@ import { VideoService } from '../../services/videos'
 export default class Movie extends React.Component {
 
     _videoService = new VideoService()
-    _type = 'movie'
+    _type = 'movie' //TODO use ContextAPI to send this value
     _interval = null
 
     state = {
@@ -23,7 +23,7 @@ export default class Movie extends React.Component {
 
     render() {
         return <ScrollView>
-            <VideoSearch onSearch={this.onSearch} />
+            <VideoSearch modalAction />
             <VideoBanner data={this.state.trends} />
             {this.state.isLoading
             ? <View>
@@ -71,12 +71,5 @@ export default class Movie extends React.Component {
         })
     }
 
-    onSearch = (text) => {
-        if(this._interval) {
-            clearInterval(this._interval)
-        }
-        this._interval = setInterval(async () => {
-            const result = await this._videoService.search(text, this._type)
-        }, 500)
-    }
+    
 }

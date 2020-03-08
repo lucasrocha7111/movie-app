@@ -6,7 +6,7 @@ import {
     Text,
     Dimensions
 } from 'react-native'
-import { IMAGE_PATH_ORIGINAL } from '../utils/constants'
+import { IMAGE_PATH } from '../utils/constants'
 const WIDTH = Dimensions.get('screen').width
 
 export class VideoBanner extends React.Component {
@@ -34,7 +34,7 @@ export class VideoBanner extends React.Component {
             },
             shadowOpacity: 0.20,
             shadowRadius: 7.41, }]}> 
-            <Image source={{uri: `${IMAGE_PATH_ORIGINAL}/${item?.backdrop_path}`}} style={[{ width: WIDTH - 40, height: 210, backgroundColor: 'gray', backgroundColor: 'gray', marginRight: 10, resizeMode: 'stretch' }]} />
+            <Image source={{uri: `${IMAGE_PATH}/${item?.backdrop_path}`}} style={[{ width: WIDTH - 40, height: 210, backgroundColor: 'gray', backgroundColor: 'gray', marginRight: 10 }]} />
         </View>
     }
 }
