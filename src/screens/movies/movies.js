@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { VideoList } from '../../components/videoList'
 import { VideoSearch } from '../../components/videoSearch'
+import { VideoBanner } from '../../components/videoBanner'
 import { VideoService } from '../../services/videos'
 
 export default class Movie extends React.Component {
@@ -16,12 +17,14 @@ export default class Movie extends React.Component {
 
     state = {
         genres: [],
+        trends: [],
         isLoading: true
     }
 
     render() {
         return <ScrollView>
             <VideoSearch onSearch={this.onSearch} />
+            <VideoBanner data={this.state.trends} />
             {this.state.isLoading
             ? <View>
                 <ActivityIndicator />
@@ -34,10 +37,18 @@ export default class Movie extends React.Component {
     }
 
     componentDidMount = async () => {
+        this.getTrends()
         await this.getGenres()
         await this.getDiscover()
         this.setState({
             isLoading: false
+        })
+    }
+
+    getTrends = async () => {
+        const result = await this._videoService.trends(this._type)
+        this.setState({
+            trends: result.data.results
         })
     }
 

@@ -6,8 +6,6 @@ import {
 } from 'react-native'
 import { VideoItem } from './videoItem'
 
-const DATA = [{title: 'movie 1'}, {title: 'movie 2'}, {title: 'movie 3'}, {title: 'movie 1'}, {title: 'movie 2'}, {title: 'movie 3'}]
-
 export class VideoList extends React.Component {
 
     render() {
@@ -17,8 +15,8 @@ export class VideoList extends React.Component {
                 <FlatList 
                     data={this.props?.data}
                     horizontal
-                    renderItem={(i) => (
-                        <View>
+                    renderItem={(i, index) => (
+                        <View key={index}>
                             <VideoItem data={i.item} title={'Title'} />
                         </View>
                     )}

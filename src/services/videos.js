@@ -15,4 +15,8 @@ export class VideoService {
         return RestClient.get(`/discover/${type}?api_key=${API_KEY}`)
     }
 
+    trends = (type) => {
+        return RestClient.get(`/trending/${type}/day?api_key=${API_KEY}`)
+    }
+
 }
