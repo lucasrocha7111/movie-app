@@ -12,7 +12,7 @@ export class VideoList extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={[{ marginBottom: 10 }]}>
                 <Text style={[{ fontWeight: 'bold', fontSize: 18, paddingHorizontal: 20, marginBottom: 20 }]}>Title</Text>
                 <FlatList 
                     data={DATA}
