@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-    View,
     TouchableOpacity,
-    Text
+    Image
 } from 'react-native'
+import { IMAGE_PATH } from '../utils/constants'
 
 export class VideoItem extends React.Component {
 
@@ -12,15 +12,10 @@ export class VideoItem extends React.Component {
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}
                 onPress={() => {
-                    this.props?.onPress ? this.props.onPress() : null  // Syntax sugar
-                    // if(this.props.onPress) {
-                    //     this.props.onPress()
-                    // }
+                    this.props?.onPress ? this.props.onPress() : null
                 }}
             >
-                <View style={[{ height: 180, width: 150, backgroundColor: 'gray', justifyContent: 'center', borderRadius: 6 }]}>
-                    <Text style={{ textAlign: 'center', color: 'white' }}>{this.props.data.title}</Text>
-                </View>
+                <Image source={{uri: `${IMAGE_PATH}/${this.props.data?.poster_path}`}} style={[{ width: 150, height: 210, backgroundColor: 'gray', justifyContent: 'center', borderRadius: 6 }]} />
             </TouchableOpacity>
         )
     }

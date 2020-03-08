@@ -11,4 +11,8 @@ export class VideoService {
         return RestClient.get(`/genre/${type}/list?api_key=${API_KEY}`)
     }
 
+    discover = (type) => {
+        return RestClient.get(`/discover/${type}?api_key=${API_KEY}`)
+    }
+
 }

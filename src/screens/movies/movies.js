@@ -27,21 +27,36 @@ export default class Movie extends React.Component {
                 <ActivityIndicator />
             </View>
             : this.state.genres.map((data) => {
-                return <VideoList />
+                return data?.videos && data?.videos.length > 0 ? <VideoList title={data?.name} data={data?.videos} /> : null
             })
             }
         </ScrollView>
     }
 
-    componentDidMount = () => {
-        this.getGenres()
+    componentDidMount = async () => {
+        await this.getGenres()
+        await this.getDiscover()
+        this.setState({
+            isLoading: false
+        })
     }
 
     getGenres = async () => {
         const result = await this._videoService.genres(this._type)
         this.setState({
             genres: result.data.genres,
-            isLoading: false
+        })
+    }
+
+    getDiscover = async () => {
+        const result = await this._videoService.discover(this._type)
+        const newGenres = this.state.genres.map((data) => {
+            const videos = result.data?.results ? result.data.results.filter((d) => d.genre_ids.includes(data.id)) : []
+            data['videos'] = videos
+            return data
+        })
+        this.setState({
+            genres: newGenres
         })
     }
 
