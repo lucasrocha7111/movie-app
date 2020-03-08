@@ -1,7 +1,8 @@
 import React from 'react'
 import {
     ScrollView,
-    Text
+    View,
+    ActivityIndicator
 } from 'react-native'
 import { VideoList } from '../../components/videoList'
 import { VideoSearch } from '../../components/videoSearch'
@@ -14,15 +15,21 @@ export default class Movie extends React.Component {
     _interval = null
 
     state = {
-        genres: []
+        genres: [],
+        isLoading: true
     }
 
     render() {
         return <ScrollView>
             <VideoSearch onSearch={this.onSearch} />
-            {this.state.genres.map((data) => {
+            {this.state.isLoading
+            ? <View>
+                <ActivityIndicator />
+            </View>
+            : this.state.genres.map((data) => {
                 return <VideoList />
-            })}
+            })
+            }
         </ScrollView>
     }
 
@@ -33,7 +40,8 @@ export default class Movie extends React.Component {
     getGenres = async () => {
         const result = await this._videoService.genres(this._type)
         this.setState({
-            genres: result.data.genres
+            genres: result.data.genres,
+            isLoading: false
         })
     }
 
