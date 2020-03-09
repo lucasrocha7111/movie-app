@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView} from 'react-native'
-import MoviesAndTV from '../movies/movies'
+import MoviesAndTV from '../moviesAndTv/moviesAndTv'
 import { Header } from '../../components/header'
 import { MyContextProvider } from '../../utils/context'
 
