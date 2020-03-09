@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './screens/home/home'
-import VideoDetail from './screens/movies/videoDetail'
+import VideoDetail from './screens/moviesAndTv/videoDetail'
 
 const Stack = createStackNavigator();
 

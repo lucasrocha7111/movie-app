@@ -15,6 +15,7 @@ export class VideoItem extends React.Component {
 
     render() {
         let contextValue = this.context
+        const field = contextValue?.type === 'movie' ? 'title' : 'name'
         return (
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}
@@ -26,8 +27,8 @@ export class VideoItem extends React.Component {
                 <View style={[{ flexDirection: 'row' }]}>
                     <Image source={{uri: `${IMAGE_PATH}/${this.props.data?.poster_path}`}} style={[{ width: 150, height: 210, backgroundColor: 'gray', justifyContent: 'center', borderRadius: 6 }]} />
                     {this.props?.showInfo
-                    ? <View style={[{ paddingLeft: 20, paddingTop: 10 }]}>
-                        <Text style={[{ fontSize: 18, fontWeight: 'bold' }]}>{this.props.data?.title}</Text>
+                    ? <View style={[{ paddingHorizontal: 20, paddingTop: 10, flex: 1 }]}>
+                        <Text style={[{ fontSize: 18, fontWeight: 'bold' }]}>{this.props.data[field]}</Text>
                     </View>
                     : null }
                 </View>
