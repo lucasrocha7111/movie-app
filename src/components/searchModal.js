@@ -68,7 +68,6 @@ export class SearchModal extends React.Component {
                 })
             }
         }, 200)
-        
     }
 
     onSearch = (text) => {

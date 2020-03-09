@@ -19,8 +19,8 @@ export class VideoItem extends React.Component {
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}
                 onPress={() => {
-                    this.props?.onPress ? this.props.onPress() : null // TODO remove this line
-                    contextValue?.navigation?.push('Detail', { data: this.props.data })
+                    this.props?.onPress ? this.props.onPress() : null
+                    contextValue?.navigation?.push('Detail', { data: this.props.data, type: contextValue?.type })
                 }}
             >
                 <View style={[{ flexDirection: 'row' }]}>

@@ -4,7 +4,8 @@ import {
     Image,
     View,
     Text,
-    Dimensions
+    Dimensions,
+    StyleSheet
 } from 'react-native'
 import { IMAGE_PATH } from '../utils/constants'
 const WIDTH = Dimensions.get('screen').width
@@ -22,20 +23,37 @@ export class VideoBanner extends React.Component {
                     renderItem={this.renderItem}
                 />
             </View>
-            
         )
     }
 
     renderItem = ({ item }, index) => {
-        // TODO fix style
-        return <View key={`${index}`} style={[{ width: WIDTH - 40, maxHeight: 210, marginHorizontal: 20, marginBottom: 10, flexDirection: 'row', elevation: 2, shadowColor: "#000",
-            shadowOffset: {
-                width: 4,
-                height: 4,
-            },
-            shadowOpacity: 0.20,
-            shadowRadius: 7.41, }]}> 
-            <Image source={{uri: `${IMAGE_PATH}/${item?.backdrop_path}`}} style={[{ width: WIDTH - 40, height: 210, backgroundColor: 'gray', backgroundColor: 'gray', marginRight: 10 }]} />
+        return <View key={`${index}`} style={[Style.item, Style.shadow]}> 
+            <Image source={{uri: `${IMAGE_PATH}/${item?.backdrop_path}`}} style={[Style.image]} />
         </View>
     }
 }
+
+const Style = StyleSheet.create({
+    item: {
+        width: WIDTH - 40, 
+        maxHeight: 210, 
+        marginHorizontal: 20, 
+        marginBottom: 10, 
+    },
+    shadow: {
+        elevation: 2,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 4,
+            height: 4,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 7.41,
+    },
+    image: {
+        width: WIDTH - 40, 
+        height: 210, 
+        backgroundColor: 'gray', 
+        marginRight: 10
+    }
+})
