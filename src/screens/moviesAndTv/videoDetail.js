@@ -5,13 +5,14 @@ import {
     Image,
     StyleSheet
 } from 'react-native'
+import { Util } from '../../utils/util'
 import { IMAGE_PATH } from '../../utils/constants'
 
 export default class VideoDetail extends React.Component {
 
     render() {
         const { data } = this.props.route.params
-        const field = this.props?.route.params?.type === 'movie' ? 'title' : 'name'
+        const field = Util.getFieldByType(this.props?.route.params?.type)
         return <View style={{flex: 1}}>
             <Image source={{uri: `${IMAGE_PATH}/${data?.backdrop_path}`}} style={[Style.image]} />
             <View style={[{ paddingHorizontal: 20, paddingTop: 20 }]}>

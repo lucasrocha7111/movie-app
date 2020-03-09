@@ -6,7 +6,7 @@ import {
     Text
 } from 'react-native'
 import { IMAGE_PATH } from '../utils/constants'
-
+import { Util } from '../utils/util'
 import { MyContextConsumer } from '../utils/context'
 
 export class VideoItem extends React.Component {
@@ -15,7 +15,7 @@ export class VideoItem extends React.Component {
 
     render() {
         let contextValue = this.context
-        const field = contextValue?.type === 'movie' ? 'title' : 'name'
+        const field = Util.getFieldByType(contextValue?.type)
         return (
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}
