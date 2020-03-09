@@ -43,8 +43,9 @@ export class SearchModal extends React.Component {
                         <View>
                             <FlatList 
                                 data={this.state.data}
-                                renderItem={(i) => {
-                                    return <VideoItem data={i.item} title={'Pesquisa'} onPress={this.onPressItem} showInfo />
+                                keyExtractor={(item, index) => `${index}`}
+                                renderItem={(i, index) => {
+                                    return <VideoItem key={`${index}`} data={i.item} title={'Pesquisa'} onPress={this.onPressItem} showInfo />
                                 }}
                             />
                         </View>

@@ -16,6 +16,7 @@ export class VideoBanner extends React.Component {
             <View>
                 <Text style={[{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', marginBottom: 20 }]}>Trends</Text>
                 <FlatList 
+                    keyExtractor={(item, index) => `${index}`}
                     horizontal
                     data={this.props?.data}
                     renderItem={this.renderItem}
@@ -25,9 +26,9 @@ export class VideoBanner extends React.Component {
         )
     }
 
-    renderItem = ({ item }) => {
+    renderItem = ({ item }, index) => {
         // TODO fix style
-        return <View style={[{ width: WIDTH - 40, maxHeight: 210, marginHorizontal: 20, marginBottom: 10, flexDirection: 'row', elevation: 2, shadowColor: "#000",
+        return <View key={`${index}`} style={[{ width: WIDTH - 40, maxHeight: 210, marginHorizontal: 20, marginBottom: 10, flexDirection: 'row', elevation: 2, shadowColor: "#000",
             shadowOffset: {
                 width: 4,
                 height: 4,

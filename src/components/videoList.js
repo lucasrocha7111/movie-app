@@ -15,8 +15,9 @@ export class VideoList extends React.Component {
                 <FlatList 
                     data={this.props?.data}
                     horizontal
+                    keyExtractor={(item, index) => `${index}`}
                     renderItem={(i, index) => (
-                        <View key={index}>
+                        <View key={`${index}`}>
                             <VideoItem data={i.item} title={'Title'} />
                         </View>
                     )}

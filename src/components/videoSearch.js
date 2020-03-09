@@ -15,7 +15,7 @@ export class VideoSearch extends React.Component {
             <View style={[{ paddingHorizontal: 20, marginBottom: 20 }]}>
                 <TextInput 
                     ref={(c) => this.inputRef = c}
-                    placeholder={'Pesquisa'} style={[{ borderBottomWidth: 0.4, borderBottomColor: 'gray', paddingBottom: 10 }]} 
+                    placeholder={'Search'} style={[{ borderBottomWidth: 0.4, borderBottomColor: 'gray', paddingBottom: 10 }]} 
                     onFocus={() => { this.onFocusEvent() }} 
                     onChangeText={(text) => {
                         this.props?.onSearch ? this.props?.onSearch(text) : null
