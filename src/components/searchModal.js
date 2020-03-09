@@ -10,8 +10,11 @@ import {
 import { VideoSearch } from './videoSearch'
 import { VideoService } from '../services/videos'
 import { VideoItem } from '../components/videoItem'
+import { MyContextConsumer } from '../utils/context'
 
 export class SearchModal extends React.Component {
+
+    static contextType = MyContextConsumer
 
     state = {
         modalVisible: false,
@@ -20,7 +23,6 @@ export class SearchModal extends React.Component {
 
     _timeout = null
     _videoService = new VideoService()
-    _type = 'movie' //TODO use ContextAPI to send this value
     _videoSearch = null
 
     render() {
@@ -73,7 +75,7 @@ export class SearchModal extends React.Component {
             clearTimeout(this._timeout)
         }
         this._timeout = setTimeout(async () => {
-            const result = await this._videoService.search(text, this._type)
+            const result = await this._videoService.search(text, this.context?.type)
             this.setState({
                 data: result.data.results
             })

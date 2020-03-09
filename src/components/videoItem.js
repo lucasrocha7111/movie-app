@@ -15,6 +15,7 @@ export class VideoItem extends React.Component {
 
     render() {
         let contextValue = this.context
+        console.log('ctx value ', contextValue)
         return (
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}

@@ -1,24 +1,34 @@
 import React from 'react'
-import { View, SafeAreaView, Image } from 'react-native'
+import { SafeAreaView} from 'react-native'
 import Movies from '../movies/movies'
+import { Header } from '../../components/header'
 import { MyContextProvider } from '../../utils/context'
-const LOGO_IMG = require('../../../assets/img/netflix_logo.png')
+
+
 
 
 export default class Home extends React.Component {
 
+    state = {
+        type: 'movie'
+    }
+
+    _movieTvRef = null
+
     render() {
         return (
             <SafeAreaView style={[{flex: 1}]}>
-                <MyContextProvider value={{navigation: this.props.navigation}}>
-                    <View>
-                        <View style={[{ alignItems: 'center' }]}>
-                            <Image source={LOGO_IMG} style={[{ width: 80, height: 60, resizeMode: 'contain' }]} />
-                        </View>
-                        <Movies />
-                    </View>
+                <MyContextProvider value={{navigation: this.props.navigation, type: this.state.type}}>
+                    <Header changeType={this.changeType} />
+                    <Movies ref={(c) => this._movieTvRef = c} type={this.state.type} />
                 </MyContextProvider>
             </SafeAreaView>
         ) 
+    }
+
+    changeType = (type) => {
+        this.setState({ type }, () => {
+            this._movieTvRef.componentDidMount()
+        })
     }
 }

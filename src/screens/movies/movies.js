@@ -8,11 +8,13 @@ import { VideoList } from '../../components/videoList'
 import { VideoSearch } from '../../components/videoSearch'
 import { VideoBanner } from '../../components/videoBanner'
 import { VideoService } from '../../services/videos'
+import { MyContextConsumer } from '../../utils/context'
 
 export default class Movie extends React.Component {
 
+    static contextType = MyContextConsumer
+
     _videoService = new VideoService()
-    _type = 'movie' //TODO use ContextAPI to send this value
     _interval = null
 
     state = {
@@ -46,21 +48,21 @@ export default class Movie extends React.Component {
     }
 
     getTrends = async () => {
-        const result = await this._videoService.trends(this._type)
+        const result = await this._videoService.trends(this.context?.type)
         this.setState({
             trends: result.data.results
         })
     }
 
     getGenres = async () => {
-        const result = await this._videoService.genres(this._type)
+        const result = await this._videoService.genres(this.context?.type)
         this.setState({
             genres: result.data.genres,
         })
     }
 
     getDiscover = async () => {
-        const result = await this._videoService.discover(this._type)
+        const result = await this._videoService.discover(this.context?.type)
         const newGenres = this.state.genres.map((data) => {
             const videos = result.data?.results ? result.data.results.filter((d) => d.genre_ids.includes(data.id)) : []
             data['videos'] = videos
