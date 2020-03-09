@@ -7,24 +7,18 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import Home from './src/screens/home/home'
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
+import { MyStack } from './src/routes'
 
 export class App extends React.Component {
 
   render() {
     return (
-      <View style={[{flex: 1}]}>
-        <Home />
-      </View>
+      <NavigationContainer>
+        {MyStack()}
+      </NavigationContainer>
+      
     )
   }
 }
