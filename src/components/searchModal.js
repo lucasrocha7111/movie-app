@@ -42,7 +42,7 @@ export class SearchModal extends React.Component {
                             <FlatList 
                                 data={this.state.data}
                                 renderItem={(i) => {
-                                    return <VideoItem data={i.item} title={'Pesquisa'} showInfo />
+                                    return <VideoItem data={i.item} title={'Pesquisa'} onPress={this.onPressItem} showInfo />
                                 }}
                             />
                         </View>
@@ -79,4 +79,8 @@ export class SearchModal extends React.Component {
             })
         }, 500)
     }
+
+    onPressItem = () => {
+        this.changeModalVisibility()
+    } 
 }

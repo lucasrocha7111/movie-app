@@ -7,14 +7,20 @@ import {
 } from 'react-native'
 import { IMAGE_PATH } from '../utils/constants'
 
+import { MyContextConsumer } from '../utils/context'
+
 export class VideoItem extends React.Component {
 
+    static contextType = MyContextConsumer
+
     render() {
+        let contextValue = this.context
         return (
             <TouchableOpacity 
                 style={[{ marginLeft: 20, paddingBottom: 5 }]}
                 onPress={() => {
-                    this.props?.onPress ? this.props.onPress() : null
+                    this.props?.onPress ? this.props.onPress() : null // TODO remove this line
+                    contextValue?.navigation?.push('Detail', { data: this.props.data })
                 }}
             >
                 <View style={[{ flexDirection: 'row' }]}>
@@ -22,7 +28,6 @@ export class VideoItem extends React.Component {
                     {this.props?.showInfo
                     ? <View style={[{ paddingLeft: 20, paddingTop: 10 }]}>
                         <Text style={[{ fontSize: 18, fontWeight: 'bold' }]}>{this.props.data?.title}</Text>
-                        <Text style={[{ fontWeight: '200' }]}>Adulto: {this.props.data?.adult ? 'Sim' : 'Não' }</Text>
                     </View>
                     : null }
                 </View>
